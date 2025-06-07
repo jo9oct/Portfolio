@@ -1,0 +1,457 @@
+body{
+    font-family: 'Times New Roman', Times, serif;
+    margin: 0;
+    box-sizing: border-box;
+    padding: 0;
+    overflow-x: hidden;
+    background-color: #081b29;
+}
+header{
+    display: flex;
+    justify-content: space-between;
+    background-color: #07151f;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 5;
+}
+h2 a{
+    text-decoration: none;
+    color: white;
+    margin-left: 100px;
+}
+h2 a:hover{
+    opacity: 0.5;
+    transition: 2s;
+}
+.head-link{
+    display: flex;
+    gap: 30px;
+    margin-right: 100px;
+}
+.head-link a{
+    text-decoration: none;
+    color: white;
+    border-radius: 50%;
+}
+.head-link .a1:hover{
+    color: #00abf0;
+    transition: .3s;
+}
+.head-link .h1{
+    color: #00abf0;
+}
+
+.home{
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin-bottom: 150px;
+}
+.main1{
+    text-align: center;
+    margin: 250px 0 0 50px;
+}
+.text1{
+    text-align: justify;
+    color: white;
+    margin: 0;
+    padding: 0;
+}
+.text1 div button{
+    font-size: larger;
+    border-radius: 10px;
+    padding: 10px 30px;
+    background-color: #00abf0;
+    cursor: pointer;
+    position: relative;
+}
+.text1 div button a{
+    text-decoration: none;
+}
+.img-link{
+    display: flex;
+    gap: 50px;
+    margin-top: 100px;
+}
+.img-link a{
+    color: white;
+    font-size: x-large;
+    border: 2px solid #00abf0;
+    padding: 7px;
+    border-radius: 100%;
+    text-decoration: none;
+    position: relative;
+    width: 30px;
+    height: 30px;
+    overflow: hidden;
+}
+.main2 img{
+    width: 100%;
+    height: auto;
+    margin: 20px 0 0 0 ;
+}
+.main2:hover{
+    opacity: 0.7;
+    transition: 2s;
+}
+.span1{
+    color: #00abf0;
+}
+.text1 div button::before{
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    overflow: hidden;
+    background-color: #081b29;
+    z-index: -1;
+}
+.text1 div button a:hover{
+    color: #00abf0;
+    z-index: 1;
+}
+.text1 div button:hover{
+    color: #00abf0;
+    z-index: 1;
+}
+.text1 div button:hover::before{
+    width: 100%;
+    border: 2px solid #00abf0;
+    border-radius: 10px;
+    transition: .5s;
+}
+.img-link a::before{
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    overflow: hidden;
+    background-color: #00abf0;
+    z-index: -1;
+}
+.img-link a:hover{
+    color: #081b29;
+    z-index: 1;
+}
+.img-link a:hover::before{
+    width: 100%;
+    border-radius: 100%;
+    transition: .5s;
+}
+
+.abouts{
+    display: flex;
+    margin: 100px 50px 100px 150px;
+    gap: 50px;
+}
+.h1{
+    text-align: center;
+}
+.h1 a{
+    color: #00abf0;
+    text-decoration: none;
+}
+.abouts1{
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+}
+.abouts1 img{
+    border-radius: 15px;
+    width: 100%;
+    height: auto;
+    border-radius: 100%;
+}
+.abouts2{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: white;
+}
+.h1 a:hover{
+    text-decoration: underline;
+    color: #00acf0b2;
+}
+
+.skills{
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    margin: 100px 50px;
+    width: 100%;
+    flex-wrap: wrap;
+}
+.dis{
+    color: white;
+    margin: 50px 100px;
+}
+.skill-img{
+    width: 40%;
+    margin-right: 70px;
+}
+.skill-img img{
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+.pro{
+    color: white;
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+}
+.pro div{
+    display: flex;
+    justify-content: space-between;
+    background-color: #1d2d38;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    position: relative;
+}
+.pro .pro1::after{
+    content: "";
+    position: absolute;
+    border-bottom: 5px solid #00abf0;
+    border-radius: 5px;
+    width: 100%;
+}
+.pro .pro2::after{
+    content: "";
+    position: absolute;
+    border-bottom: 5px solid #00abf0;
+    border-radius: 5px;
+    width: 90%;
+}
+.pro .pro3::after{
+    content: "";
+    position: absolute;
+    border-bottom: 5px solid #00abf0;
+    border-radius: 5px;
+    width: 95%;
+}
+.pro .pro4::after{
+    content: "";
+    position: absolute;
+    border-bottom: 5px solid #00abf0;
+    border-radius: 5px;
+    width: 80%;
+}
+.pro .pro5::after{
+    content: "";
+    position: absolute;
+    border-bottom: 5px solid #00abf0;
+    border-radius: 5px;
+    width: 75%;
+}
+.works{
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 50px;
+}
+.work_box img{
+    width: 100%;
+    height: auto;
+}
+.works .work_box{
+    position: relative;
+    border-radius: 2rem;
+    box-shadow: 0 0 1rem purple;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.works .work_layer{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(rgba(0,0,0,.1),lightblue);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    overflow: none;
+    color: white;
+    transform: translateY(100%);
+    transition: .5s ease;
+}
+.work_layer h4{
+    font-size: x-large;
+    padding-top: 0;
+    margin-top: 0;
+}
+.work_layer p{
+    font-size: large;
+    padding-top: 0;
+    margin-top: 0;
+}
+.work_layer a{
+    font-size: x-large;
+    color: black;
+}
+.work_box:hover  .work_layer{
+    transform: translateY(0%);
+}
+
+.contact-h1{
+    text-align: center;
+}
+
+.img-call{
+    margin-right: 20px;
+}
+
+
+.head-link .a1:active{
+    text-decoration: underline 2px  black; 
+    color: black;
+}
+
+.img-link:first-child{
+    color: black;
+}
+
+.hov{
+    position: relative;
+    overflow: hidden;
+    display: flex;
+}
+
+.hov .h{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(rgba(0,0,0,.1), lightblue);
+    display: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: translateY(100%);
+}
+.hov img{
+    transition: .5s ease;
+
+}
+.hov:hover img{
+    transform: translateY(0%);
+}
+
+.contact{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.contact .c2 input,.c1 textarea{
+    padding: 10px;
+    border: none;
+    border-radius: 10px;
+    margin: 5px;
+    background-color: gray;
+}
+.c1 textarea{
+    width: 360px;
+    height: 200px;
+    resize: none;
+}
+.c1 .but{
+    font-size: x-large;
+    padding: 10px;
+    border: 2px solid #00abf0;
+    border-radius: 10px;
+    transform: translateX(60%);
+    position: relative;
+    margin-bottom: 50px;
+    color: #00abf0;
+    background-color: #081b29;
+}
+/* .c1 .but:hover{
+    
+} */
+
+::placeholder {
+    color: white;
+    opacity: 0.4;
+  }
+
+@media screen and (max-width : 1200px) {
+    .abouts{
+        margin: 100px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+}
+
+@media screen and (max-width : 900px){
+    .home{
+        gap: 0;
+        flex-wrap: wrap;
+    }
+    .skills{
+        margin: 100px 0;
+    }
+    .skills .skill-img{
+        display: none;
+        gap: 0;
+    }
+}
+.menu-icon{
+    display: none;
+}
+@media screen and (max-width : 800px){
+    .menu-icon{
+        display: block;
+        color: white;
+        margin-right: 100px;
+        cursor: pointer;
+    }
+    .head-link{
+        position: absolute;
+        display: flex;
+        flex-direction: column;
+        margin-top: 500px;
+        font-size: x-large;
+        visibility: hidden;
+        margin-left: 0;
+        color: #00abf0;
+    }
+    .a1{
+        background-color: #07151f;
+        margin-left: 100px;
+        padding: 10px;
+    }
+    .a1:hover{
+        transform: scale(1.2);
+        background-color: black;
+    }
+}
+
+.reverse_head{
+    visibility: visible;
+    transform-origin: top center;
+    animation: showmanu 0.5s ease-in-out forwards ;
+}
+@keyframes showmanu { 
+    0%{ 
+        transform: scaleY(0);
+    }
+    80%{
+        transform: scaleY(1.2);
+    }
+    100%{
+        transform: scaleY(1);
+    }
+}
