@@ -9,8 +9,12 @@ dotenv.config();
 
 const app=express();
 
+const rawFrontEndUrls = process.env.Front_End_URL
+  ? process.env.Front_End_URL.split(",").map((url) => url.trim().replace(/\/+$/, ""))
+  : [];
+
 const allowedOrigins = [
-  process.env.Front_End_URL,
+  ...rawFrontEndUrls,
   "http://localhost:5050",
   "http://localhost:5173",
 ].filter(Boolean);

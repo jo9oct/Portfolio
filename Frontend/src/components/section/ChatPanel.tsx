@@ -14,7 +14,7 @@ import axios from "axios";
 import { aboutFacts, heroBio, profile } from "@/lib/portfolio-data";
 import { useVisitorCounter } from "@/hooks/useVisitorCounter";
 
-const backendUrl = import.meta.env.VITE_BACKEND_URL;
+const backendUrl = (import.meta.env.VITE_BACKEND_URL || "http://localhost:3422").replace(/\/+$/, "");
 
 type View = "profile" | "telegram" | "ai";
 type Msg = { id: string; from: "me" | "bot"; text: string; time: string };

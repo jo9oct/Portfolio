@@ -8,7 +8,7 @@ const VISITOR_REGISTERED_KEY = "portfolio_visitor_registered";
  * defaulting to the current origin or localhost:3422.
  */
 export function getBackendUrl(): string {
-  const url = import.meta.env.VITE_BACKEND_URL || "http://localhost:3422";
+  const url = import.meta.env.VITE_BACKEND_URL;
   return url.replace(/\/+$/, "");
 }
 

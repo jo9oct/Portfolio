@@ -14,7 +14,10 @@ import axios from "axios";
 import { Section } from "@/components/subSection/Section";
 import { profile } from "@/lib/portfolio-data";
 
-const backendUrl = import.meta.env.VITE_BACKEND_URL || "http://localhost:3422";
+const backendUrl = (import.meta.env.VITE_BACKEND_URL || "http://localhost:3422").replace(/\/+$/, "");
+const emailServiceId = import.meta.env.VITE_EMAILJS_SERVICE_ID || "coder<jo>";
+const emailTemplateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID || "template_iy8btmr";
+const emailPublicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY || "8ws9zrwgVR9zxfAKp";
 
 export function Contact() {
   const [formData, setFormData] = useState({
@@ -77,10 +80,10 @@ export function Contact() {
       // 1. Send via EmailJS with full parameter coverage
       try {
         const emailResult = await emailjs.send(
-          "coder<jo>",
-          "template_iy8btmr",
+          emailServiceId,
+          emailTemplateId,
           templateParams,
-          "8ws9zrwgVR9zxfAKp"
+          emailPublicKey
         );
         if (emailResult.status === 200 || emailResult.text === "OK") {
           emailSuccess = true;
