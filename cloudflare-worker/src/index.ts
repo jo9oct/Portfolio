@@ -168,24 +168,37 @@ export default {
       });
     }
 
-    // Validate Authorization Header if secret is set
+    // Require API secret configuration
     const expectedSecret = env.CLOUDFLARE_VISITOR_API_SECRET;
-    if (expectedSecret) {
-      const authHeader = request.headers.get("Authorization");
-      const bearerToken = authHeader?.replace(/^Bearer\s+/i, "");
 
-      if (!bearerToken || bearerToken !== expectedSecret) {
-        return new Response(
-          JSON.stringify({
-            success: false,
-            error: "Unauthorized: Invalid or missing API secret",
-          }),
-          {
-            status: 401,
-            headers: { "Content-Type": "application/json" },
-          }
-        );
-      }
+    if (!expectedSecret) {
+      return new Response(
+        JSON.stringify({
+          success: false,
+          error: "Server authentication is not configured",
+        }),
+        {
+          status: 503,
+          headers: { "Content-Type": "application/json" },
+        }
+      );
+    }
+
+    // Validate Authorization header
+    const authHeader = request.headers.get("Authorization");
+    const bearerToken = authHeader?.replace(/^Bearer\s+/i, "");
+
+    if (!bearerToken || bearerToken !== expectedSecret) {
+      return new Response(
+        JSON.stringify({
+          success: false,
+          error: "Unauthorized",
+        }),
+        {
+          status: 401,
+          headers: { "Content-Type": "application/json" },
+        }
+      );
     }
 
     // Access singleton Durable Object
