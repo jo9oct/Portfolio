@@ -1,40 +1,43 @@
-
-name: CD - Frontend
+name: Deploy Frontend
 
 on:
   workflow_run:
-    workflows:
-      - CI
+    workflows: ["CI"]
     types:
       - completed
     branches:
       - master
+  workflow_dispatch:
 
-permissions: {}
+concurrency:
+  group: deploy-frontend-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
-  deploy:
-    name: Deploy frontend to Render
-    if: >-
-      github.event.workflow_run.event == 'push' &&
-      github.event.workflow_run.head_branch == 'master' &&
-      github.event.workflow_run.conclusion == 'success'
+  deploy-frontend-render:
+    name: Deploy Frontend to Render
     runs-on: ubuntu-latest
-
+    if: ${{ github.event_name == 'workflow_dispatch' || (github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.head_branch == 'master') }}
     steps:
-      - name: Trigger frontend deployment
+      - name: Trigger Frontend Deploy Webhook
         env:
           FRONTEND_DEPLOY_WEBHOOK_URL: ${{ secrets.FRONTEND_DEPLOY_WEBHOOK_URL }}
         run: |
           if [ -z "$FRONTEND_DEPLOY_WEBHOOK_URL" ]; then
-            echo "::error::FRONTEND_DEPLOY_WEBHOOK_URL is not configured."
+            echo "::error::Secret FRONTEND_DEPLOY_WEBHOOK_URL is missing. Please configure it in your GitHub Repository Secrets."
             exit 1
           fi
 
-          if ! curl --proto '=https' --tlsv1.2 --fail --silent \
-            --output /dev/null --request POST "$FRONTEND_DEPLOY_WEBHOOK_URL" 2>/dev/null; then
-            echo "::error::Frontend deployment webhook request failed."
+          echo "Triggering Frontend deployment on Render..."
+          HTTP_RESPONSE=$(curl -s -o response.txt -w "%{http_code}" -X POST "$FRONTEND_DEPLOY_WEBHOOK_URL")
+
+          echo "Render responded with HTTP status: $HTTP_RESPONSE"
+          cat response.txt || true
+          echo ""
+
+          if [ "$HTTP_RESPONSE" -ge 200 ] && [ "$HTTP_RESPONSE" -lt 300 ]; then
+            echo "Frontend deployment triggered successfully!"
+          else
+            echo "::error::Frontend deployment hook failed with status code $HTTP_RESPONSE"
             exit 1
           fi
-
-          echo "Frontend deployment triggered successfully."
