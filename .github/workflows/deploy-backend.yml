@@ -1,43 +1,40 @@
-name: Deploy Backend
+
+name: CD - Backend
 
 on:
   workflow_run:
-    workflows: ["CI"]
+    workflows:
+      - CI
     types:
       - completed
     branches:
       - master
-  workflow_dispatch:
 
-concurrency:
-  group: deploy-backend-${{ github.ref }}
-  cancel-in-progress: true
+permissions: {}
 
 jobs:
-  deploy-render:
-    name: Deploy to Render
+  deploy:
+    name: Deploy backend to Render
+    if: >-
+      github.event.workflow_run.event == 'push' &&
+      github.event.workflow_run.head_branch == 'master' &&
+      github.event.workflow_run.conclusion == 'success'
     runs-on: ubuntu-latest
-    if: ${{ github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success' }}
+
     steps:
-      - name: Trigger Render Deploy Hook
+      - name: Trigger backend deployment
         env:
-          RENDER_DEPLOY_HOOK_URL: ${{ secrets.RENDER_DEPLOY_HOOK_URL }}
+          BACKEND_DEPLOY_WEBHOOK_URL: ${{ secrets.BACKEND_DEPLOY_WEBHOOK_URL }}
         run: |
-          if [ -z "$RENDER_DEPLOY_HOOK_URL" ]; then
-            echo "::error::Secret RENDER_DEPLOY_HOOK_URL is missing. Please configure it in your GitHub Repository Secrets."
+          if [ -z "$BACKEND_DEPLOY_WEBHOOK_URL" ]; then
+            echo "::error::BACKEND_DEPLOY_WEBHOOK_URL is not configured."
             exit 1
           fi
 
-          echo "Triggering deployment on Render..."
-          HTTP_RESPONSE=$(curl -s -o response.txt -w "%{http_code}" -X POST "$RENDER_DEPLOY_HOOK_URL")
-
-          echo "Render responded with HTTP status: $HTTP_RESPONSE"
-          cat response.txt || true
-          echo ""
-
-          if [ "$HTTP_RESPONSE" -ge 200 ] && [ "$HTTP_RESPONSE" -lt 300 ]; then
-            echo "Render deployment triggered successfully!"
-          else
-            echo "::error::Render deployment hook failed with status code $HTTP_RESPONSE"
+          if ! curl --proto '=https' --tlsv1.2 --fail --silent \
+            --output /dev/null --request POST "$BACKEND_DEPLOY_WEBHOOK_URL" 2>/dev/null; then
+            echo "::error::Backend deployment webhook request failed."
             exit 1
           fi
+
+          echo "Backend deployment triggered successfully."
