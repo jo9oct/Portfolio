@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <!-- Favicon (your logo/icon) -->
+    <link rel="icon" type="image/png" href="/I.png" />
+
+    <!-- Responsive design -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Page Title (important for SEO + browser tab) -->
+    <title>Yohannis Hailye - Full-Stack Developer & UI/UX Designer</title>
+
+    <!-- Meta Description (important for Google search) -->
+    <meta
+      name="description"
+      content="Personal portfolio website showcasing frontend development skills, projects, and experience in React, Express.js, TailwindCSS, Figma, Next.js, TypeScript, JavaScript, Node.js, MongoDB, MySQL, Bootstrap and modern web technologies."
+    />
+
+    <!-- Open Graph (for social media sharing) -->
+    <meta property="og:title" content="Yohannis Hailye | full-stack Developer Portfolio" />
+    <meta property="og:description" content="Explore my projects, skills, and experience in web development." />
+    <meta property="og:image" content="/preview.png" />
+    <meta property="og:type" content="website" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <!-- Umami Analytics (Cloud) - Decoupled -->
+    <script>
+      (function () {
+        var websiteId = "%VITE_UMAMI_WEBSITE_ID%";
+        var scriptUrl = "%VITE_UMAMI_SCRIPT_URL%" || "https://cloud.umami.is/script.js";
+        if (websiteId && !websiteId.startsWith("%")) {
+          var s = document.createElement("script");
+          s.defer = true;
+          s.src = scriptUrl.startsWith("%") ? "https://cloud.umami.is/script.js" : scriptUrl;
+          s.setAttribute("data-website-id", websiteId);
+          document.head.appendChild(s);
+        }
+      })();
+    </script>
+  </head>
+
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

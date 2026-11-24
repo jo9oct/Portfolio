@@ -1,0 +1,23 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "portfolio-visitor-counter",
+  "main": "src/index.ts",
+  "compatibility_date": "2025-02-14",
+  "durable_objects": {
+    "bindings": [
+      {
+        "name": "VISITOR_COUNTER",
+        "class_name": "VisitorCounterDO"
+      }
+    ]
+  },
+  "migrations": [
+    {
+      "tag": "v1",
+      "new_sqlite_classes": ["VisitorCounterDO"]
+    }
+  ],
+  "observability": {
+    "enabled": true
+  }
+}
